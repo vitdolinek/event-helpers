@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f6f7fc;
+}
+
+.window-top {
+    height: 44px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: url(https://gpzz.innogamescdn.com/images/game/layout/gpwindow_horizontal.png)
+        0 -17px repeat-x;
+    top: 0;
+}
+
+.window-top .corner {
+    background-image: url(https://gpzz.innogamescdn.com/images/game/layout/gpwindow_corners.png);
+    background-repeat: no-repeat;
+    width: 16px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.window-top .corner {
+    height: 44px;
+}
+
+.window-top-left.corner {
+    background-position: left -34px;
+}
+.window-top-left .corner {
+    left: -16px;
+}
+
+.window-top-right.corner {
+    background-position: right -78px;
+}
+
+.window-top-right.corner {
+    right: -16px;
+}
+
+.window-bottom {
+    height: 17px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: url(https://gpzz.innogamescdn.com/images/game/layout/gpwindow_horizontal.png)
+        0 0 repeat-x;
+    bottom: 0;
+}
+
+.button_new {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 23px;
+    cursor: pointer;
+    vertical-align: middle;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0;
+    padding: 0;
+    margin: 5px;
+    font-size: 13px;
+}
+
+.button_new .left {
+    background-position: 0 -69px;
+    top: 0;
+    left: 0;
+}
+
+.button_new .right {
+    background-position: -27px 0;
+    top: 0;
+    right: 0;
+}
+
+.button_new .caption,
+.button_new .left,
+.button_new .right {
+    background-image: url("./button_sprite.png");
+    background-repeat: no-repeat;
+    width: 4px;
+    position: absolute;
+    height: 23px;
+}
+
+.button_new .caption {
+    background-repeat: repeat-x;
+    background-position: 0 -138px;
+    width: auto;
+    position: relative;
+    margin: 0 4px;
+    line-height: 23px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #fc6;
+    text-align: center;
+    font-weight: 700;
+    padding: 0 13px;
+    font-size: 12px;
+}
+
+.button_new .caption:hover {
+    background-position: 0 -161px;
+}
