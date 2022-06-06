@@ -2,27 +2,9 @@ import React, { FC, ReactNode } from "react";
 import styled from "@emotion/styled";
 import image from "../../assets/images/button_sprite.png";
 
-export interface IButtonProps {
-  children?: ReactNode;
+export interface IButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+  disabled?: boolean;
 }
-
-const StyledButtonWrapper = styled("div")`
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  height: 23px;
-  cursor: pointer;
-  vertical-align: middle;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 0;
-  padding: 0;
-  margin: 5px;
-  font-size: 13px;
-`;
 
 const StyledButtonBase = styled("div")`
   background-image: url(${image});
@@ -33,7 +15,6 @@ const StyledButtonBase = styled("div")`
 `;
 
 const StyledButtonLeft = styled(StyledButtonBase)`
-  background-position: 0 -69px;
   top: 0;
   left: 0;
 `;
@@ -54,7 +35,6 @@ const StyledButtonCaption = styled(StyledButtonBase)`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  color: #fc6;
   text-align: center;
   font-weight: 700;
   padding: 0 13px;
@@ -64,8 +44,37 @@ const StyledButtonCaption = styled(StyledButtonBase)`
   }
 `;
 
-const Button: FC<IButtonProps> = ({ children }) => (
-  <StyledButtonWrapper>
+const StyledButtonWrapper = styled("div")<IButtonProps>`
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 23px;
+  cursor: ${({ disabled }) => (disabled ? "initial" : "pointer")};
+  vertical-align: middle;
+  user-select: none;
+  border: 0;
+  padding: 0;
+  margin: 5px;
+  font-size: 13px;
+
+  ${StyledButtonLeft} {
+    background-position: ${({ disabled }) =>
+      disabled ? `0 -115px` : `0 -69px`};
+  }
+
+  ${StyledButtonRight} {
+    background-position: ${({ disabled }) => disabled && ` -27px -46px;`};
+  }
+
+  ${StyledButtonCaption} {
+    background-position: ${({ disabled }) => disabled && `0 -184px`};
+    color: ${({ disabled }) => (disabled ? "#ccb" : "#fc6")};
+    vertical-align: middle;
+  }
+`;
+
+const Button: FC<IButtonProps> = ({ disabled, children, ...rest }) => (
+  <StyledButtonWrapper disabled={disabled} {...rest}>
     <StyledButtonLeft />
     <StyledButtonRight />
     <StyledButtonCaption>{children}</StyledButtonCaption>
