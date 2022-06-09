@@ -7,11 +7,13 @@ import corners from "../../assets/images/window/corners.png";
 import bg from "../../assets/images/window/bg.jpg";
 
 const StyledWrapper = styled("div")<IGPWindowProps>`
-  position: absolute;
-  width: ${({ width }) => width || "300px"};
+  position: relative;
+  width: calc(${({ width }) => width || "300px"} - 32px);
   min-height: 0px;
   max-height: none;
   height: ${({ height }) => height || "300px"};
+  margin-left: 16px;
+  margin-right: 16px;
 `;
 
 const StyledTitleBar = styled("div")`
@@ -40,7 +42,7 @@ const StyledWindowTop = styled(StyledWindowHorizontalBase)`
 
 const StyledWindowBottom = styled(StyledWindowHorizontalBase)`
   height: 17px;
-  bottom: 0;
+  bottom: 0px;
   background: url(${horizontal}) 0 0px repeat-x;
 `;
 
@@ -110,13 +112,14 @@ const StyledWindowContent = styled("div")`
 
 interface IGPWindowProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
+  contentCssProps?: React.CSSProperties;
 }
 
 const GPWindow: FC<IGPWindowProps> = (props) => (
   <StyledWrapper {...props}>
-    <StyledTitleBar>{props.title} dsads</StyledTitleBar>
+    <StyledTitleBar>{props.title}</StyledTitleBar>
     <StyledWindowLeft />
     <StyledWindowRight />
     <StyledWindowTop>
@@ -127,7 +130,9 @@ const GPWindow: FC<IGPWindowProps> = (props) => (
       <StyledWindowBottomLeftCorner />
       <StyledWindowBottomRightCorner />
     </StyledWindowBottom>
-    <StyledWindowContent>test</StyledWindowContent>
+    <StyledWindowContent style={props.contentCssProps}>
+      {props.children}
+    </StyledWindowContent>
   </StyledWrapper>
 );
 

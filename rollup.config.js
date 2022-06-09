@@ -5,6 +5,9 @@ import dts from "rollup-plugin-dts";
 import image from "@rollup/plugin-image";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import babel from "@rollup/plugin-babel";
+
+const extensions = [".js", ".jsx", ".es6", ".es", ".mjs", ".ts", ".tsx"];
 
 const packageJson = require("./package.json");
 
@@ -29,6 +32,10 @@ export default [
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       image(),
+      babel({
+        extensions,
+        babelHelpers: "bundled",
+      }),
       terser(),
     ],
   },

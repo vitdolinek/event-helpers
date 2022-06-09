@@ -4,6 +4,7 @@ import image from "../../assets/images/button_sprite.png";
 
 export interface IButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   disabled?: boolean;
+  Icon?: any;
 }
 
 const StyledButtonBase = styled("div")`
@@ -73,11 +74,23 @@ const StyledButtonWrapper = styled("div")<IButtonProps>`
   }
 `;
 
-const Button: FC<IButtonProps> = ({ disabled, children, ...rest }) => (
+const StyledButtonIcon = styled("span")`
+  position: absolute;
+  right: 0;
+`;
+
+const Button: FC<IButtonProps> = ({ disabled, children, Icon, ...rest }) => (
   <StyledButtonWrapper disabled={disabled} {...rest}>
     <StyledButtonLeft />
     <StyledButtonRight />
-    <StyledButtonCaption>{children}</StyledButtonCaption>
+    <StyledButtonCaption>
+      {children}
+      {Icon && (
+        <StyledButtonIcon>
+          <Icon />
+        </StyledButtonIcon>
+      )}
+    </StyledButtonCaption>
   </StyledButtonWrapper>
 );
 
