@@ -16,10 +16,14 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        dir: "dist/esm",
+        file: packageJson.main,
+        format: "cjs",
+        sourcemap: true,
+      },
+      {
+        file: packageJson.module,
         format: "esm",
         sourcemap: true,
-        preserveModules: true,
       },
     ],
     plugins: [
@@ -29,9 +33,8 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       image(),
       babel({
-        babelHelpers: "runtime",
-        exclude: /node_modules/,
         extensions,
+        babelHelpers: "bundled",
       }),
       terser(),
     ],
